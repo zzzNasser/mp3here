@@ -13,18 +13,22 @@ Open `http://localhost:3000`.
 
 ## Ads
 
-Mp3Here includes Google AdSense-ready placements. Create an AdSense account, add your site, create display ad units, then
-set these values in `.env.local`:
+Mp3Here loads your AdSense publisher script by default:
+
+```html
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4219612713826693" crossorigin="anonymous"></script>
+```
+
+To use manual display ad placements, create display ad units in AdSense, then set these slot values in `.env.local`:
 
 ```bash
-NEXT_PUBLIC_ADSENSE_CLIENT_ID="ca-pub-your-publisher-id"
 NEXT_PUBLIC_ADSENSE_TOP_SLOT="your-top-banner-slot"
 NEXT_PUBLIC_ADSENSE_SIDEBAR_SLOT="your-sidebar-slot"
 NEXT_PUBLIC_ADSENSE_BOTTOM_SLOT="your-bottom-banner-slot"
 ```
 
-The app shows development placeholders until those values are configured. Restart `npm run dev` after editing
-`.env.local`.
+You can still override the publisher ID with `NEXT_PUBLIC_ADSENSE_CLIENT_ID` if needed. The app shows placeholders until
+manual slot IDs are configured. Restart `npm run dev` after editing `.env.local`.
 
 ## Media engine
 

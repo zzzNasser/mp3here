@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+
+import { adsenseClientId } from "@/lib/ads";
 
 import "./globals.css";
 
@@ -14,8 +15,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,17 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         {children}
-        {adsenseClientId ? (
-          <Script
-            id="adsense-loader"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        ) : null}
       </body>
     </html>
   );

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { adsenseClientId } from "@/lib/ads";
+
 declare global {
   interface Window {
     adsbygoogle?: Array<Record<string, unknown>>;
@@ -14,8 +16,6 @@ type AdUnitProps = {
   minHeight?: number;
   className?: string;
 };
-
-const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
 export function AdUnit({ slot, format = "auto", minHeight = 96, className = "" }: AdUnitProps) {
   const adRef = useRef<HTMLModElement | null>(null);
